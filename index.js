@@ -1,5 +1,5 @@
 // consrtucture object diffrent hotel
-function hotel(hotelName, location, image) {
+function Hotel(hotelName2, location2, image2) {
     this.hotelName = hotelName2;
     this.location = location2;
     this.image = image2;
@@ -7,7 +7,7 @@ function hotel(hotelName, location, image) {
 
 
   // consrtucture object diffrent standard room
-function sweetRoom(price, quantity, roomImage, NumberBed, description) {
+function SweetRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
     this.price = price2;
     this.quantity = quantity2;
     this.roomImage= roomImage2;
@@ -17,7 +17,7 @@ function sweetRoom(price, quantity, roomImage, NumberBed, description) {
 
 
   // consrtucture object diffrent family room
-function familyRoom(price, quantity, roomImage, NumberBed, description) {
+function FamilyRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
     this.price = price2;
     this.quantity = quantity2;
     this.roomImage= roomImage2;
@@ -26,7 +26,7 @@ function familyRoom(price, quantity, roomImage, NumberBed, description) {
   }
 
   // consrtucture object diffrent standard room
-function standardRoom(price, quantity, roomImage, NumberBed, description) {
+function StandardRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
     this.price = price2;
     this.quantity = quantity2;
     this.roomImage= roomImage2;
@@ -35,18 +35,35 @@ function standardRoom(price, quantity, roomImage, NumberBed, description) {
   }
 
 
-const hotelThailand = new Hotel("Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1683134041222-fb1cb31c1203?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGh1a2V0JTIwJTIwYmVhY2glMjAlMjByZXNvcnR8ZW58MHx8MHx8fDA%3D");
+const hotelThailand = new Hotel("White Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1683134041222-fb1cb31c1203?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGh1a2V0JTIwJTIwYmVhY2glMjAlMjByZXNvcnR8ZW58MHx8MHx8fDA%3D");
+
+const hotelThailand2 = new Hotel("Pink Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1670002464796-3a3136fe8808?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhY2glMjBob3R0ZWwlMjB0aGFpbGFuZHxlbnwwfHwwfHx8MA%3D%3D");
+
+const hotelThailand3 = new Hotel(" Spa Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJlYWNoJTIwaG90dGVsJTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%3D");
+
+
+
 const hotelDubai = new Hotel("Lotus Dubai", "Dubai", "https://plus.unsplash.com/premium_photo-1661962790754-9a1a5b5e334a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZHViYWklMjBiZWFjaCUyMCUyMHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D");
 const hotelHawaii = new Hotel("Lotus Hawaii", "Hawaii", "https://images.unsplash.com/photo-1646843132316-e63a43d8a251?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhhd2FpaSUyMGJlYWNoJTIwJTIwcmVzb3J0fGVufDB8fDB8fHww");
 
-var hotel = [hotelThailand,hotelDubai,hotelHawaii ]
+var hotel = [hotelThailand,hotelThailand2,hotelThailand3,hotelDubai,hotelHawaii ]
 
 function displayHotel(){
-  var readListBoxHotel = document.getElementById(allHotelID).value
+// update delete previouse search start Headers
+let div = document.getElementById('displayHotelImage')
+  //id contactList control the whole section of new contact
+  //first child what inside div --remove it all
+  while(div.firstChild){
+div.removeChild(div.firstChild)
+  }
+// end here update content
+
+  var readListBoxHotel = document.getElementById("allHotelID").value
   //go to all loop of hotel object
   for (i=0;i<hotel.length;i++){
-if(hotel[i].hotelName == readListBoxHotel){
+if(hotel[i].location == readListBoxHotel){
   var createDiv = document.createElement("div")
+  createDiv.setAttribute("class", "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700")
   var createPtag = document.createElement("p")
   var textNote = document.createTextNode(hotel[i].hotelName)//crate text  inside p tag
   createPtag.appendChild(textNote)//put textnote on ptag
@@ -66,6 +83,6 @@ document.getElementById('displayHotelImage').appendChild(createDiv)
 
 
 
-const sweetRoom = new SweetRoom(400, 4, "roomImage", 1, "description");
-const familyRoom = new FamilyRoom(300, 10, "roomImage", 3, "description");
-const standardRoom = new StandardRoom(200, 20, "roomImage", 2, "description");
+const sweetRoomObj = new SweetRoom(400, 4, "roomImage", 1, "description");
+const familyRoomObj = new FamilyRoom(300, 10, "roomImage", 3, "description");
+const standardRoomObj = new StandardRoom(200, 20, "roomImage", 2, "description");
