@@ -7,9 +7,8 @@ function Hotel(hotelName2, location2, image2) {
 
 
   // consrtucture object diffrent standard room
-function SweetRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
+function SweetRoom(price2, roomImage2, NumberBed2, description2) {
     this.price = price2;
-    this.quantity = quantity2;
     this.roomImage= roomImage2;
     this.NumberBed = NumberBed2;
     this.description = description2;
@@ -17,18 +16,23 @@ function SweetRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
 
 
   // consrtucture object diffrent family room
-function FamilyRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
+function FamilyRoom(price2, roomImage2, NumberBed2, description2) {
     this.price = price2;
-    this.quantity = quantity2;
     this.roomImage= roomImage2;
     this.NumberBed = NumberBed2;
     this.description = description2;
   }
 
   // consrtucture object diffrent standard room
-function StandardRoom(price2, quantity2, roomImage2, NumberBed2, description2) {
+function StandardRoom(price2,roomImage2, NumberBed2, description2) {
     this.price = price2;
-    this.quantity = quantity2;
+    this.roomImage= roomImage2;
+    this.NumberBed = NumberBed2;
+    this.description = description2;
+  }
+//how many room in each hotel
+  function numHotelRoomFunc(hotelName, numStandardRoom, numFamilyRoom, numSweetRoom, standardRoom,familyRoom, sweetRoom) {
+    this.price = price2;
     this.roomImage= roomImage2;
     this.NumberBed = NumberBed2;
     this.description = description2;
@@ -47,6 +51,21 @@ const hotelDubai = new Hotel("Lotus Dubai", "Dubai", "https://plus.unsplash.com/
 const hotelHawaii = new Hotel("Lotus Hawaii", "Hawaii", "https://images.unsplash.com/photo-1646843132316-e63a43d8a251?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhhd2FpaSUyMGJlYWNoJTIwJTIwcmVzb3J0fGVufDB8fDB8fHww");
 
 var hotel = [hotelThailand,hotelThailand2,hotelThailand3,hotelDubai,hotelHawaii ]
+
+
+var standardRoom = new StandardRoom(100, " ",1, "")//price, image , no of bed, description
+var familyRoom = new FamilyRoom(200, " ", 2, "")
+var sweetRoom = new SweetRoom(300, " ",1, "")
+var hotelThailandRoom = new numHotelRoomFunc("White Lotus Thailand",20,10,5, standardRoom,familyRoom, sweetRoom)//num standard romm, family, sweet
+
+ standardRoom = new StandardRoom(200, " ",1, "")//price, image , no of bed, description
+ familyRoom = new FamilyRoom(300, " ", 2, "")
+ sweetRoom = new SweetRoom(500, " ",1, "")
+ var hotelHawaiiRoom = new numHotelRoomFunc("Lotus Hawaii",30,20,10, standardRoom,familyRoom, sweetRoom)//Lotus Hawaii --line51-num standard romm, family, sweet
+
+
+
+
 
 function displayHotel(){
 // update delete previouse search start Headers
