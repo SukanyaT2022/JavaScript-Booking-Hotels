@@ -32,10 +32,13 @@ function StandardRoom(price2,roomImage2, NumberBed2, description2) {
   }
 //how many room in each hotel
   function numHotelRoomFunc(hotelName, numStandardRoom, numFamilyRoom, numSweetRoom, standardRoom,familyRoom, sweetRoom) {
-    this.price = price2;
-    this.roomImage= roomImage2;
-    this.NumberBed = NumberBed2;
-    this.description = description2;
+    this.hotelName = hotelName;
+    this.numFamilyRoom = numFamilyRoom;
+    this.numSweetRoom = numSweetRoom;
+    this.standardRoom = standardRoom;
+    this.familyRoom = familyRoom;
+    this.sweetRoom = sweetRoom;
+
   }
 
 
@@ -53,6 +56,7 @@ const hotelHawaii = new Hotel("Lotus Hawaii", "Hawaii", "https://images.unsplash
 var hotel = [hotelThailand,hotelThailand2,hotelThailand3,hotelDubai,hotelHawaii ]
 
 
+
 var standardRoom = new StandardRoom(100, " ",1, "")//price, image , no of bed, description
 var familyRoom = new FamilyRoom(200, " ", 2, "")
 var sweetRoom = new SweetRoom(300, " ",1, "")
@@ -63,8 +67,12 @@ var hotelThailandRoom = new numHotelRoomFunc("White Lotus Thailand",20,10,5, sta
  sweetRoom = new SweetRoom(500, " ",1, "")
  var hotelHawaiiRoom = new numHotelRoomFunc("Lotus Hawaii",30,20,10, standardRoom,familyRoom, sweetRoom)//Lotus Hawaii --line51-num standard romm, family, sweet
 
+ standardRoom = new StandardRoom(300, " ",1, "")//price, image , no of bed, description
+ familyRoom = new FamilyRoom(400, " ", 2, "")
+ sweetRoom = new SweetRoom(600, " ",1, "")
+ var hotelDubaiRoom = new numHotelRoomFunc("Lotus Dubai",50,30,10, standardRoom,familyRoom, sweetRoom)//Lotus Hawaii --line51-num standard romm, family, sweet
 
-
+ var hotelRoom = [hotelThailandRoom,hotelDubaiRoom,hotelHawaiiRoom ]
 
 
 function displayHotel(){
@@ -94,12 +102,61 @@ imgTag.setAttribute("src",hotel[i].image)//from hotel object
 imgTag.setAttribute("height","150px")
 imgTag.setAttribute("width","150px")
 createDiv.appendChild(imgTag) //add image tag to div tag
+
+//button viewrate
+var buttonVar = document.createElement('button')
+var textNoteTwo = document.createTextNode('View Rate')
+buttonVar.appendChild(textNoteTwo)
+buttonVar.setAttribute('class','bg-pink-400 w-full h-full')
+// buttonVar.setAttribute('type','button')
+// buttonVar.setAttribute('value', 'View Rate')
+buttonVar.setAttribute('onclick','displayHotelRoom('+ hotel[i].hotelName + ')')
+createDiv.appendChild(buttonVar)
 document.getElementById('displayHotelImage').appendChild(createDiv)
 }
   }
 }
 
+function showImgRoomType(hotelName){
+  // update delete previouse search start Headers
+  let div = document.getElementById('showImgRoomType')
+    //id contactList control the whole section of new contact
+    //first child what inside div --remove it all
+    while(div.firstChild){
+  div.removeChild(div.firstChild)
+    }
+  // end here update content
+  
+    //go to all loop of hotel object
+    for (i=0;i<hotelRoom.length;i++){
+  if(hotelRoom[i].location == hotelName){
+    var createDiv = document.createElement("div")
+    createDiv.setAttribute("class", "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700")
+    var createPtag = document.createElement("p")
+    var textNote = document.createTextNode('Standard Room')//crate text  inside p tag
+    createPtag.appendChild(textNote)//put textnote on ptag
+    createDiv.appendChild(createPtag)//put ptag in div 
 
+    var createPtag3 = document.createElement("p")
+    var textNote3 = document.createTextNode(hotelRoom[i].numStandardRoom)//crate text  inside p tag
+    createPtag3.appendChild(textNote3)//put textnote on ptag
+    createDiv.appendChild(createPtag3)//put ptag in div 
+
+    var createPtag4 = document.createElement("p")
+    var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price)//crate text  inside p tag
+    createPtag4.appendChild(textNote4)//put textnote on ptag
+    createDiv.appendChild(createPtag4)//put ptag in div 
+  
+  //create image tag
+    var imgTag = document.createElement("img")//we create image tag
+  imgTag.setAttribute("src",hotelRoom[i].standardRoom.roomImage)//from hotel object
+  imgTag.setAttribute("height","150px")
+  imgTag.setAttribute("width","150px")
+  createDiv.appendChild(imgTag) //add image tag to div tag
+  div.appendChild(createDiv)
+  }
+}
+}
 
 
 const sweetRoomObj = new SweetRoom(400, 4, "roomImage", 1, "description");
