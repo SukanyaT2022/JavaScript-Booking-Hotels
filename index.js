@@ -57,9 +57,9 @@ var hotel = [hotelThailand,hotelThailand2,hotelThailand3,hotelDubai,hotelHawaii 
 
 
 
-var standardRoom = new StandardRoom(100, " ",1, "")//price, image , no of bed, description
-var familyRoom = new FamilyRoom(200, " ", 2, "")
-var sweetRoom = new SweetRoom(300, " ",1, "")
+var standardRoom = new StandardRoom(100, "https://plus.unsplash.com/premium_photo-1681822718579-314dd234fb6d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG90ZWwlMjByb29tJTIwc3RhbmRhcmR8ZW58MHx8MHx8fDA%3D",1, "")//price, image , no of bed, description
+var familyRoom = new FamilyRoom(200, "https://plus.unsplash.com/premium_photo-1663091084165-5623c80cea52?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG90ZWwlMjBmYW1pbHklMjByb29tfGVufDB8fDB8fHww ", 2, "")
+var sweetRoom = new SweetRoom(300, " https://plus.unsplash.com/premium_photo-1664476831905-36395f089394?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWwlMjBzd2VldCUyMHJvb20lMjB3ZWRkaW5nfGVufDB8fDB8fHww",1, "")
 var hotelThailandRoom = new numHotelRoomFunc("White Lotus Thailand",20,10,5, standardRoom,familyRoom, sweetRoom)//num standard romm, family, sweet
 
  standardRoom = new StandardRoom(200, " ",1, "")//price, image , no of bed, description
@@ -110,7 +110,7 @@ buttonVar.appendChild(textNoteTwo)
 buttonVar.setAttribute('class','bg-pink-400 w-full h-full')
 // buttonVar.setAttribute('type','button')
 // buttonVar.setAttribute('value', 'View Rate')
-buttonVar.setAttribute('onclick','displayHotelRoom('+ hotel[i].hotelName + ')')
+buttonVar.setAttribute("onclick","showImgRoomType('"+ hotel[i].hotelName + "')")
 createDiv.appendChild(buttonVar)
 document.getElementById('displayHotelImage').appendChild(createDiv)
 }
@@ -120,40 +120,109 @@ document.getElementById('displayHotelImage').appendChild(createDiv)
 function showImgRoomType(hotelName){
   // update delete previouse search start Headers
   let div = document.getElementById('showImgRoomType')
+
     //id contactList control the whole section of new contact
-    //first child what inside div --remove it all
+    // first child what inside div --remove it all
     while(div.firstChild){
   div.removeChild(div.firstChild)
     }
   // end here update content
-  
-    //go to all loop of hotel object
+
+    // go to all loop of hotel object
     for (i=0;i<hotelRoom.length;i++){
-  if(hotelRoom[i].location == hotelName){
+  
+  if(hotelRoom[i].hotelName == hotelName){
     var createDiv = document.createElement("div")
     createDiv.setAttribute("class", "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700")
-    var createPtag = document.createElement("p")
-    var textNote = document.createTextNode('Standard Room')//crate text  inside p tag
-    createPtag.appendChild(textNote)//put textnote on ptag
-    createDiv.appendChild(createPtag)//put ptag in div 
-
-    var createPtag3 = document.createElement("p")
-    var textNote3 = document.createTextNode(hotelRoom[i].numStandardRoom)//crate text  inside p tag
-    createPtag3.appendChild(textNote3)//put textnote on ptag
-    createDiv.appendChild(createPtag3)//put ptag in div 
-
-    var createPtag4 = document.createElement("p")
-    var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price)//crate text  inside p tag
-    createPtag4.appendChild(textNote4)//put textnote on ptag
-    createDiv.appendChild(createPtag4)//put ptag in div 
-  
+    
+    //show standdard room
   //create image tag
     var imgTag = document.createElement("img")//we create image tag
   imgTag.setAttribute("src",hotelRoom[i].standardRoom.roomImage)//from hotel object
   imgTag.setAttribute("height","150px")
   imgTag.setAttribute("width","150px")
   createDiv.appendChild(imgTag) //add image tag to div tag
+
+  var createPtag = document.createElement("p")
+    var textNote = document.createTextNode('Standard Room')//crate text  inside p tag
+    createPtag.appendChild(textNote)//put textnote on ptag
+    createDiv.appendChild(createPtag)//put ptag in div 
+
+    // var createPtag3 = document.createElement("p")
+    // var textNote3 = document.createTextNode(hotelRoom[i].numStandardRoom)//crate text  inside p tag
+    // createPtag3.appendChild(textNote3)//put textnote on ptag
+    // createDiv.appendChild(createPtag3)//put ptag in div 
+
+    var createPtag4 = document.createElement("p")
+    var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price)//crate text  inside p tag
+    createPtag4.appendChild(textNote4)//put textnote on ptag
+    createDiv.appendChild(createPtag4)//put ptag in div 
+  
   div.appendChild(createDiv)
+
+  //end
+
+// family room type create
+
+var createDiv = document.createElement("div")
+    createDiv.setAttribute("class", "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700")
+    
+  //create image tag
+    var imgTag = document.createElement("img")//we create image tag
+  imgTag.setAttribute("src",hotelRoom[i].familyRoom.roomImage)//from hotel object
+  imgTag.setAttribute("height","150px")
+  imgTag.setAttribute("width","150px")
+  createDiv.appendChild(imgTag) //add image tag to div tag
+  var createPtag = document.createElement("p")
+    var textNote = document.createTextNode('Family Room')//crate text  inside p tag
+    createPtag.appendChild(textNote)//put textnote on ptag
+    createDiv.appendChild(createPtag)//put ptag in div 
+
+    // var createPtag3 = document.createElement("p")
+    // var textNote3 = document.createTextNode(hotelRoom[i].numFamilyRoom)//crate text  inside p tag
+    // createPtag3.appendChild(textNote3)//put textnote on ptag
+    // createDiv.appendChild(createPtag3)//put ptag in div 
+
+    var createPtag4 = document.createElement("p")
+    var textNote4 = document.createTextNode(hotelRoom[i].familyRoom.price)//crate text  inside p tag
+    createPtag4.appendChild(textNote4)//put textnote on ptag
+    createDiv.appendChild(createPtag4)//put ptag in div 
+  
+  div.appendChild(createDiv)
+
+  //end
+
+  // family room type create
+
+var createDiv = document.createElement("div")
+    createDiv.setAttribute("class", "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700")
+    
+  //create image tag
+    var imgTag = document.createElement("img")//we create image tag
+  imgTag.setAttribute("src",hotelRoom[i].sweetRoom.roomImage)//from hotel object
+  imgTag.setAttribute("height","150px")
+  imgTag.setAttribute("width","150px")
+  createDiv.appendChild(imgTag) //add image tag to div tag
+  var createPtag = document.createElement("p")
+    var textNote = document.createTextNode('Sweet Room')//crate text  inside p tag
+    createPtag.appendChild(textNote)//put textnote on ptag
+    createDiv.appendChild(createPtag)//put ptag in div 
+
+    // var createPtag3 = document.createElement("p")
+    // var textNote3 = document.createTextNode(hotelRoom[i].numFamilyRoom)//crate text  inside p tag
+    // createPtag3.appendChild(textNote3)//put textnote on ptag
+    // createDiv.appendChild(createPtag3)//put ptag in div 
+
+    var createPtag4 = document.createElement("p")
+    var textNote4 = document.createTextNode(hotelRoom[i].sweetRoom.price)//crate text  inside p tag
+    createPtag4.appendChild(textNote4)//put textnote on ptag
+    createDiv.appendChild(createPtag4)//put ptag in div 
+  
+  div.appendChild(createDiv)
+
+  //end
+
+
   }
 }
 }
