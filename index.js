@@ -1,8 +1,11 @@
 // consrtucture object diffrent hotel
-function Hotel(hotelName2, location2, image2) {
+function Hotel(hotelName2, location2, image, image3, image4, image5) {
     this.hotelName = hotelName2;
     this.location = location2;
-    this.image = image2;
+    this.image = image;
+    this.image3 = image3;
+    this.image4 = image4;
+    this.image5 = image5;
   }
 
 
@@ -42,18 +45,28 @@ function StandardRoom(price2,roomImage2, NumberBed2, description2) {
   }
 
 
-const hotelThailand = new Hotel("White Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1683134041222-fb1cb31c1203?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGh1a2V0JTIwJTIwYmVhY2glMjAlMjByZXNvcnR8ZW58MHx8MHx8fDA%3D");
+const hotelThailand = new Hotel("White Lotus Thailand", "Thailand", 
+"https://plus.unsplash.com/premium_photo-1683134041222-fb1cb31c1203?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGh1a2V0JTIwJTIwYmVhY2glMjAlMjByZXNvcnR8ZW58MHx8MHx8fDA%3D",
 
-const hotelThailand2 = new Hotel("Pink Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1670002464796-3a3136fe8808?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhY2glMjBob3R0ZWwlMjB0aGFpbGFuZHxlbnwwfHwwfHx8MA%3D%3D");
+"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVtJTIwcGh1a2V0JTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%",
 
-const hotelThailand3 = new Hotel(" Spa Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJlYWNoJTIwaG90dGVsJTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%3D");
+"https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdGVtJTIwcGh1a2V0JTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%3D",
+
+"https://images.unsplash.com/photo-1445546857131-5fc39d1c51f0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjB2aWV3JTIwJTIwcGh1a2V0JTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%3D"
+
+
+);
+
+// const hotelThailand2 = new Hotel("Pink Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1670002464796-3a3136fe8808?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhY2glMjBob3R0ZWwlMjB0aGFpbGFuZHxlbnwwfHwwfHx8MA%3D%3D");
+
+// const hotelThailand3 = new Hotel(" Spa Lotus Thailand", "Thailand", "https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJlYWNoJTIwaG90dGVsJTIwdGhhaWxhbmR8ZW58MHx8MHx8fDA%3D");
 
 
 
 const hotelDubai = new Hotel("Lotus Dubai", "Dubai", "https://plus.unsplash.com/premium_photo-1661962790754-9a1a5b5e334a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZHViYWklMjBiZWFjaCUyMCUyMHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D");
 const hotelHawaii = new Hotel("Lotus Hawaii", "Hawaii", "https://images.unsplash.com/photo-1646843132316-e63a43d8a251?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhhd2FpaSUyMGJlYWNoJTIwJTIwcmVzb3J0fGVufDB8fDB8fHww");
 
-var hotel = [hotelThailand,hotelThailand2,hotelThailand3,hotelDubai,hotelHawaii ]
+var hotel = [hotelThailand,hotelDubai,hotelHawaii ]
 
 
 
@@ -96,14 +109,40 @@ if(hotel[i].location == readListBoxHotel){
   createPtag.appendChild(textNote)//put textnote on ptag
   createDiv.appendChild(createPtag)//put ptag in div 
 
+  var imageDivWrapper = document.createElement("div")
 //create image tag
   var imgTag = document.createElement("img")//we create image tag
 imgTag.setAttribute("src",hotel[i].image)//from hotel object
 imgTag.setAttribute("height","150px")
 imgTag.setAttribute("width","150px")
-createDiv.appendChild(imgTag) //add image tag to div tag
+imageDivWrapper.setAttribute('class','wrapDivImage')//create tag for hotel image 
+imageDivWrapper.appendChild(imgTag) //add image tag to div tag
+
+//create image tag
+var imgTag3 = document.createElement("img")//we create image tag
+imgTag3.setAttribute("src",hotel[i].image3)//from hotel object
+imgTag3.setAttribute("height","150px")
+imgTag3.setAttribute("width","150px")
+imageDivWrapper.appendChild(imgTag3) //add image tag to div tag
+
+//create image tag
+var imgTag4 = document.createElement("img")//we create image tag
+imgTag4.setAttribute("src",hotel[i].image4)//from hotel object
+imgTag4.setAttribute("height","150px")
+imgTag4.setAttribute("width","150px")
+imageDivWrapper.appendChild(imgTag4) //add image tag to div tag
+
+//create image tag
+var imgTag5 = document.createElement("img")//we create image tag
+imgTag5.setAttribute("src",hotel[i].image5)//from hotel object
+imgTag5.setAttribute("height","150px")
+imgTag5.setAttribute("width","150px")
+imageDivWrapper.appendChild(imgTag5) //add image tag to div tag
+createDiv.appendChild(imageDivWrapper)
 
 //button viewrate
+
+var divViewRateButton = document.createElement('div')
 var buttonVar = document.createElement('button')
 var textNoteTwo = document.createTextNode('View Rate')
 buttonVar.appendChild(textNoteTwo)
@@ -111,7 +150,9 @@ buttonVar.setAttribute('class','bg-pink-400 w-full h-full')
 // buttonVar.setAttribute('type','button')
 // buttonVar.setAttribute('value', 'View Rate')
 buttonVar.setAttribute("onclick","showImgRoomType('"+ hotel[i].hotelName + "')")
-createDiv.appendChild(buttonVar)
+divViewRateButton.appendChild(buttonVar)
+createDiv.appendChild(divViewRateButton)
+divViewRateButton.setAttribute('class', 'targetViewRatbutton')
 document.getElementById('displayHotelImage').appendChild(createDiv)
 }
   }
@@ -141,6 +182,7 @@ function showImgRoomType(hotelName){
   imgTag.setAttribute("src",hotelRoom[i].standardRoom.roomImage)//from hotel object
   imgTag.setAttribute("height","150px")
   imgTag.setAttribute("width","150px")
+
   createDiv.appendChild(imgTag) //add image tag to div tag
 
   var createPtag = document.createElement("p")
