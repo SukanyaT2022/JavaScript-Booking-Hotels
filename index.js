@@ -188,15 +188,7 @@ function displayHotel() {
     if (hotel[i].location == readListBoxHotel) {
   
 
-      //capture start and end date of reservation
-var startDate = document.getElementById('startDate').value
-var endDate = document.getElementById('endDate').value
-console.log(startDate)
-console.log(endDate)
-
-
-
-
+      
 
 
       var createDiv = document.createElement('div');
@@ -272,10 +264,47 @@ function showImgRoomType(hotelName) {
   }
   // end here update content
 
+
   // go to all loop of hotel object
   for (i = 0; i < hotelRoom.length; i++) {
     if (hotelRoom[i].hotelName == hotelName) {
       var createDiv = document.createElement('div');
+
+      //capture start and end date of reservation
+var startDate = document.getElementById('startDate').value
+var endDate = document.getElementById('endDate').value
+console.log(startDate)
+console.log(endDate)
+
+//start from 0--03/05/2024 --/ slash include to position
+var startDay = parseInt(startDate.substring(3,5))
+var startMonth = parseInt(startDate.substring(0,2))
+var startYear = parseInt(startDate.substring(6))
+
+
+//start from 0--03/05/2024 --/ slash include to position
+var endDay = parseInt(endDate.substring(3,5))
+var endMonth = parseInt(endDate.substring(0,2))
+var endYear = parseInt(startDate.substring(6))
+
+var dateOne = new Date(startYear,startMonth-1, startDay)
+var dateTwo = new Date(endYear,endMonth-1, endDay)
+console.log(dateOne)
+console.log(dateTwo)
+
+// calculate how many day bet two days
+
+let Difference_In_Time =
+dateTwo.getTime() - dateOne.getTime();
+
+// Calculating the no. of days between
+// two dates
+let Difference_In_Days = Math.round (Difference_In_Time / (1000 * 3600 * 24));
+console.log(Difference_In_Days)
+// alert(Difference_In_Days * hotel[i].price)
+
+
+
       createDiv.setAttribute(
         'class',
         'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
@@ -301,7 +330,7 @@ function showImgRoomType(hotelName) {
       // createDiv.appendChild(createPtag3)//put ptag in div
 
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price); //crate text  inside p tag
+      var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       createDiv.appendChild(createPtag4); //put ptag in div
 
@@ -334,7 +363,7 @@ function showImgRoomType(hotelName) {
       // createDiv.appendChild(createPtag3)//put ptag in div
 
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].familyRoom.price); //crate text  inside p tag
+      var textNote4 = document.createTextNode(hotelRoom[i].familyRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       createDiv.appendChild(createPtag4); //put ptag in div
 
@@ -367,7 +396,7 @@ function showImgRoomType(hotelName) {
       // createDiv.appendChild(createPtag3)//put ptag in div
 
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].sweetRoom.price); //crate text  inside p tag
+      var textNote4 = document.createTextNode(hotelRoom[i].sweetRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       createDiv.appendChild(createPtag4); //put ptag in div
 
