@@ -4,3 +4,23 @@
 .targetViewRatbutton{
     
 }
+
+/* in price pr night and total price view section  */
+.perNightSection{
+    
+}
+.total{
+
+}
+.targetImageViewPrice{
+    height: 100px;
+    width: 100px;
+}
+/* wrap price per night and total price text */
+.wrapperBox{
+border: 2px solid pink;
+}
+/* main box wrap image box and text total price Box */
+.mainBox{
+display: flex;
+}

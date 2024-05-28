@@ -307,36 +307,45 @@ console.log(Difference_In_Days)
 
       createDiv.setAttribute(
         'class',
-        'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
+        'mainBox'
       );
+
+
 
       //show standdard room
       //create image tag
+      var innerDiv = document.createElement('div')
+      innerDiv.setAttribute('class', 'wrapperBox')
       var imgTag = document.createElement('img'); //we create image tag
       imgTag.setAttribute('src', hotelRoom[i].standardRoom.roomImage); //from hotel object
-      imgTag.setAttribute('height', '150px');
-      imgTag.setAttribute('width', '150px');
+  
+      imgTag.setAttribute("class","targetImageViewPrice")
 
       createDiv.appendChild(imgTag); //add image tag to div tag
 
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Standard Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-      createDiv.appendChild(createPtag); //put ptag in div
+   innerDiv.appendChild(createPtag); //put ptag in div
 
-      // var createPtag3 = document.createElement("p")
-      // var textNote3 = document.createTextNode(hotelRoom[i].numStandardRoom)//crate text  inside p tag
-      // createPtag3.appendChild(textNote3)//put textnote on ptag
-      // createDiv.appendChild(createPtag3)//put ptag in div
 
+      var createPriceTag = document.createElement('p');
+      var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].standardRoom.price); //crate text  inside p tag
+      createPriceTag.appendChild(priceNote); //put textnote on ptag
+      innerDiv.appendChild(createPriceTag); //put ptag in div
+createPriceTag.setAttribute("class","perNightSection")
+  
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].standardRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode("Total" + " $"+hotelRoom[i].standardRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
-      createDiv.appendChild(createPtag4); //put ptag in div
-
+      innerDiv.appendChild(createPtag4); //put ptag in div
+      createPtag4.setAttribute("class","total")
+      createDiv.appendChild(innerDiv)
       div.appendChild(createDiv);
 
-      //end
+      //end standard type
+
+
 
       // family room type create
 
@@ -345,6 +354,9 @@ console.log(Difference_In_Days)
         'class',
         'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
       );
+
+      var innerDiv = document.createElement('div')
+      innerDiv.setAttribute('class', 'wrapperBox')
 
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
@@ -355,21 +367,24 @@ console.log(Difference_In_Days)
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Family Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-      createDiv.appendChild(createPtag); //put ptag in div
+    innerDiv.appendChild(createPtag); //put ptag in div
 
-      // var createPtag3 = document.createElement("p")
-      // var textNote3 = document.createTextNode(hotelRoom[i].numFamilyRoom)//crate text  inside p tag
-      // createPtag3.appendChild(textNote3)//put textnote on ptag
-      // createDiv.appendChild(createPtag3)//put ptag in div
-
+  //price per night
+      var createPriceTag = document.createElement('p');
+      var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].familyRoom.price); //crate text  inside p tag
+      createPriceTag.appendChild(priceNote); //put textnote on ptag
+  innerDiv.appendChild(createPriceTag); //put ptag in div
+      createPriceTag.setAttribute("class","perNightSection")
+//price for total
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].familyRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode("Total" + " $"+hotelRoom[i].familyRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
-      createDiv.appendChild(createPtag4); //put ptag in div
-
+   innerDiv.appendChild(createPtag4); //put ptag in div
+      createPtag4.setAttribute("class","total")
+createDiv.appendChild(innerDiv)
       div.appendChild(createDiv);
 
-      //end
+      //end family type
 
       // family room type create
 
@@ -378,6 +393,9 @@ console.log(Difference_In_Days)
         'class',
         'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
       );
+      // wrapper image price per night - total price
+      var innerDiv = document.createElement('div')
+      innerDiv.setAttribute('class', 'wrapperBox')
 
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
@@ -388,18 +406,22 @@ console.log(Difference_In_Days)
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Sweet Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-      createDiv.appendChild(createPtag); //put ptag in div
+  innerDiv.appendChild(createPtag); //put ptag in div
 
-      // var createPtag3 = document.createElement("p")
-      // var textNote3 = document.createTextNode(hotelRoom[i].numFamilyRoom)//crate text  inside p tag
-      // createPtag3.appendChild(textNote3)//put textnote on ptag
-      // createDiv.appendChild(createPtag3)//put ptag in div
+  //price per night
+  var createPriceTag = document.createElement('p');
+  var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].sweetRoom.price); //crate text  inside p tag
+  createPriceTag.appendChild(priceNote); //put textnote on ptag
+innerDiv.appendChild(createPriceTag); //put ptag in div
+  createPriceTag.setAttribute("class","perNightSection")
 
+  //total price
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode(hotelRoom[i].sweetRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode("Total" + " $"+ hotelRoom[i].sweetRoom.price * Difference_In_Days); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
-      createDiv.appendChild(createPtag4); //put ptag in div
-
+  innerDiv.appendChild(createPtag4); //put ptag in div
+      createPtag4.setAttribute("class","total")
+      createDiv.appendChild(innerDiv)
       div.appendChild(createDiv);
 
       //end
