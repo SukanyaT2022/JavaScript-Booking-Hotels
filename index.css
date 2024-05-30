@@ -23,4 +23,23 @@ border: 2px solid pink;
 /* main box wrap image box and text total price Box */
 .mainBox{
 display: flex;
+border: 2px solid green;
+justify-content: center;
 }
+
+.divHotelbyCountery{
+width: 80%;
+height: 400px;
+background-color: green;
+
+}
+.divHotelbyCounteryImage{
+width: 500px;
+height: 400px;
+}
+.pTagHotelbyCountery{
+    font-size: 20px;
+} 
+.viewRateButton{
+    background-color: blueviolet;
+}  

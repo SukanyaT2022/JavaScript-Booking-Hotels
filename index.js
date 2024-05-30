@@ -181,15 +181,22 @@ function displayHotel() {
     div.removeChild(div.firstChild);
   }
   // end here update content
+//people box how many adult and kid-- not more than 8 people
+var adult = parseInt(document.getElementById('adultTextBox').value)
+var child = parseInt(document.getElementById('childTextBox').value)
+if((adult + child)>8){
+  alert('Can not book a package for more than 8 people')
+return
+}
+
+
+
+
 
   var readListBoxHotel = document.getElementById('allHotelID').value;
   //go to all loop of hotel object
   for (i = 0; i < hotel.length; i++) {
     if (hotel[i].location == readListBoxHotel) {
-  
-
-      
-
 
       var createDiv = document.createElement('div');
       createDiv.setAttribute(
@@ -197,13 +204,16 @@ function displayHotel() {
         'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
       );
       var createPtag = document.createElement('p');
+     createPtag.setAttribute('class', 'pTagHotelbyCountery')
       var textNote = document.createTextNode(hotel[i].hotelName); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
       createDiv.appendChild(createPtag); //put ptag in div
 
       var imageDivWrapper = document.createElement('div');
+      imageDivWrapper.setAttribute('class', 'divHotelbyCountery')
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
+    imgTag.setAttribute('class', 'divHotelbyCounteryImage')
       imgTag.setAttribute('src', hotel[i].image); //from hotel object
       imgTag.setAttribute('height', '150px');
       imgTag.setAttribute('width', '150px');
@@ -212,6 +222,7 @@ function displayHotel() {
 
       //create image tag
       var imgTag3 = document.createElement('img'); //we create image tag
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
       imgTag3.setAttribute('src', hotel[i].image3); //from hotel object
       imgTag3.setAttribute('height', '150px');
       imgTag3.setAttribute('width', '150px');
@@ -219,6 +230,7 @@ function displayHotel() {
 
       //create image tag
       var imgTag4 = document.createElement('img'); //we create image tag
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
       imgTag4.setAttribute('src', hotel[i].image4); //from hotel object
       imgTag4.setAttribute('height', '150px');
       imgTag4.setAttribute('width', '150px');
@@ -226,6 +238,7 @@ function displayHotel() {
 
       //create image tag
       var imgTag5 = document.createElement('img'); //we create image tag
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
       imgTag5.setAttribute('src', hotel[i].image5); //from hotel object
       imgTag5.setAttribute('height', '150px');
       imgTag5.setAttribute('width', '150px');
@@ -238,7 +251,7 @@ function displayHotel() {
       var buttonVar = document.createElement('button');
       var textNoteTwo = document.createTextNode('View Rate');
       buttonVar.appendChild(textNoteTwo);
-      buttonVar.setAttribute('class', 'bg-pink-400 w-full h-full');
+      buttonVar.setAttribute('class', 'viewRateButton');
       // buttonVar.setAttribute('type','button')
       // buttonVar.setAttribute('value', 'View Rate')
       buttonVar.setAttribute(
@@ -265,43 +278,48 @@ function showImgRoomType(hotelName) {
   // end here update content
 
 
-  // go to all loop of hotel object
-  for (i = 0; i < hotelRoom.length; i++) {
-    if (hotelRoom[i].hotelName == hotelName) {
-      var createDiv = document.createElement('div');
-
       //capture start and end date of reservation
-var startDate = document.getElementById('startDate').value
-var endDate = document.getElementById('endDate').value
-console.log(startDate)
-console.log(endDate)
+      var startDate = document.getElementById('startDate').value
+      var endDate = document.getElementById('endDate').value
+      if (startDate ==''|| endDate =='' ){
+alert('Select Date')
+return
+      }
+      console.log(startDate)
+      console.log(endDate)
+      
+      //start from 0--03/05/2024 --/ slash include to position
+      var startDay = parseInt(startDate.substring(3,5))
+      var startMonth = parseInt(startDate.substring(0,2))
+      var startYear = parseInt(startDate.substring(6))
+      
+      
+      //start from 0--03/05/2024 --/ slash include to position
+      var endDay = parseInt(endDate.substring(3,5))
+      var endMonth = parseInt(endDate.substring(0,2))
+      var endYear = parseInt(startDate.substring(6))
+      
+      var dateOne = new Date(startYear,startMonth-1, startDay)
+      var dateTwo = new Date(endYear,endMonth-1, endDay)
+      console.log(dateOne)
+      console.log(dateTwo)
+      
 
-//start from 0--03/05/2024 --/ slash include to position
-var startDay = parseInt(startDate.substring(3,5))
-var startMonth = parseInt(startDate.substring(0,2))
-var startYear = parseInt(startDate.substring(6))
-
-
-//start from 0--03/05/2024 --/ slash include to position
-var endDay = parseInt(endDate.substring(3,5))
-var endMonth = parseInt(endDate.substring(0,2))
-var endYear = parseInt(startDate.substring(6))
-
-var dateOne = new Date(startYear,startMonth-1, startDay)
-var dateTwo = new Date(endYear,endMonth-1, endDay)
-console.log(dateOne)
-console.log(dateTwo)
-
-// calculate how many day bet two days
-
-let Difference_In_Time =
-dateTwo.getTime() - dateOne.getTime();
+      
+      let Difference_In_Time =
+      dateTwo.getTime() - dateOne.getTime();
 
 // Calculating the no. of days between
 // two dates
 let Difference_In_Days = Math.round (Difference_In_Time / (1000 * 3600 * 24));
 console.log(Difference_In_Days)
 // alert(Difference_In_Days * hotel[i].price)
+
+
+  // go to all loop of hotel object
+  for (i = 0; i < hotelRoom.length; i++) {
+    if (hotelRoom[i].hotelName == hotelName) {
+      var createDiv = document.createElement('div');
 
 
 
@@ -352,7 +370,7 @@ createPriceTag.setAttribute("class","perNightSection")
       var createDiv = document.createElement('div');
       createDiv.setAttribute(
         'class',
-        'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
+        'mainBox'
       );
 
       var innerDiv = document.createElement('div')
@@ -391,7 +409,7 @@ createDiv.appendChild(innerDiv)
       var createDiv = document.createElement('div');
       createDiv.setAttribute(
         'class',
-        'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
+        'mainBox'
       );
       // wrapper image price per night - total price
       var innerDiv = document.createElement('div')
