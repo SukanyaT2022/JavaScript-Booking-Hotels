@@ -1,3 +1,5 @@
+var total = 0
+
 // consrtucture object diffrent hotel
 function Hotel(hotelName2, location2, image, image3, image4, image5) {
   this.hotelName = hotelName2;
@@ -171,8 +173,10 @@ var hotelDubaiRoom = new numHotelRoomFunc(
 
 var hotelRoom = [hotelThailandRoom, hotelDubaiRoom, hotelHawaiiRoom];
 
+
 //displayHotel() do check which hotel select--price --how many days bet 2 day start and end
 function displayHotel() {
+  total = 0
   // update delete previouse search start Headers
   let div = document.getElementById('displayHotelImage');
   //id contactList control the whole section of new contact
@@ -181,39 +185,34 @@ function displayHotel() {
     div.removeChild(div.firstChild);
   }
   // end here update content
-//people box how many adult and kid-- not more than 8 people
-var adult = parseInt(document.getElementById('adultTextBox').value)
-var child = parseInt(document.getElementById('childTextBox').value)
-if((adult + child)>8){
-  alert('Can not book a package for more than 8 people')
-return
-}
-
-
-
-
+  //people box how many adult and kid-- not more than 8 people
+  var adult = parseInt(document.getElementById('adultTextBox').value);
+  var child = parseInt(document.getElementById('childTextBox').value);
+  if (adult + child > 8) {
+    alert('Can not book a package for more than 8 people');
+    return;
+  }
 
   var readListBoxHotel = document.getElementById('allHotelID').value;
   //go to all loop of hotel object
   for (i = 0; i < hotel.length; i++) {
     if (hotel[i].location == readListBoxHotel) {
-
       var createDiv = document.createElement('div');
       createDiv.setAttribute(
         'class',
         'max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
       );
       var createPtag = document.createElement('p');
-     createPtag.setAttribute('class', 'pTagHotelbyCountery')
+      createPtag.setAttribute('class', 'pTagHotelbyCountery');
       var textNote = document.createTextNode(hotel[i].hotelName); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
       createDiv.appendChild(createPtag); //put ptag in div
 
       var imageDivWrapper = document.createElement('div');
-      imageDivWrapper.setAttribute('class', 'divHotelbyCountery')
+      imageDivWrapper.setAttribute('class', 'divHotelbyCountery');
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
-    imgTag.setAttribute('class', 'divHotelbyCounteryImage')
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage');
       imgTag.setAttribute('src', hotel[i].image); //from hotel object
       imgTag.setAttribute('height', '150px');
       imgTag.setAttribute('width', '150px');
@@ -222,7 +221,7 @@ return
 
       //create image tag
       var imgTag3 = document.createElement('img'); //we create image tag
-      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage');
       imgTag3.setAttribute('src', hotel[i].image3); //from hotel object
       imgTag3.setAttribute('height', '150px');
       imgTag3.setAttribute('width', '150px');
@@ -230,7 +229,7 @@ return
 
       //create image tag
       var imgTag4 = document.createElement('img'); //we create image tag
-      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage');
       imgTag4.setAttribute('src', hotel[i].image4); //from hotel object
       imgTag4.setAttribute('height', '150px');
       imgTag4.setAttribute('width', '150px');
@@ -238,7 +237,7 @@ return
 
       //create image tag
       var imgTag5 = document.createElement('img'); //we create image tag
-      imgTag.setAttribute('class', 'divHotelbyCounteryImage')
+      imgTag.setAttribute('class', 'divHotelbyCounteryImage');
       imgTag5.setAttribute('src', hotel[i].image5); //from hotel object
       imgTag5.setAttribute('height', '150px');
       imgTag5.setAttribute('width', '150px');
@@ -266,6 +265,42 @@ return
   }
 }
 
+function summary(roomType, roomPrice, numRoom){
+  // room type summary
+var div = document.createElement('div');
+var ptag = document.createElement('p');
+var textRoomType = document.createTextNode('Room Type' + roomType)
+
+div.appendChild(ptag)
+ptag.appendChild(textRoomType)
+
+ptag.setAttribute('class', 'roomType')
+div.setAttribute('class', 'roomTypeDivWrapper')
+
+// room price summary
+var div = document.createElement('div');
+var ptag = document.createElement('p');
+var textRoomPrice = document.createTextNode('Room Price' + roomPrice)
+
+div.appendChild(ptag)
+ptag.appendChild(textRoomPrice )
+
+ptag.setAttribute('class', 'roomPrice')
+div.setAttribute('class', 'roomPriceDivWrapper')
+
+// num room summary
+var div = document.createElement('div');
+var ptag = document.createElement('p');
+var textNumRoom = document.createTextNode('Number of Room' + numRoom)
+
+div.appendChild(ptag)
+ptag.appendChild(textNumRoom)
+
+ptag.setAttribute('class', 'numRoom')
+div.setAttribute('class', 'numroomDivWrapper')
+
+}
+
 function showImgRoomType(hotelName) {
   // update delete previouse search start Headers
   let div = document.getElementById('showImgRoomType');
@@ -277,104 +312,94 @@ function showImgRoomType(hotelName) {
   }
   // end here update content
 
+  //capture start and end date of reservation
+  var startDate = document.getElementById('startDate').value;
+  var endDate = document.getElementById('endDate').value;
+  if (startDate == '' || endDate == '') {
+    alert('Select Date');
+    return;
+  }
+  console.log(startDate);
+  console.log(endDate);
 
-      //capture start and end date of reservation
-      var startDate = document.getElementById('startDate').value
-      var endDate = document.getElementById('endDate').value
-      if (startDate ==''|| endDate =='' ){
-alert('Select Date')
-return
-      }
-      console.log(startDate)
-      console.log(endDate)
-      
-      //start from 0--03/05/2024 --/ slash include to position
-      var startDay = parseInt(startDate.substring(3,5))
-      var startMonth = parseInt(startDate.substring(0,2))
-      var startYear = parseInt(startDate.substring(6))
-      
-      
-      //start from 0--03/05/2024 --/ slash include to position
-      var endDay = parseInt(endDate.substring(3,5))
-      var endMonth = parseInt(endDate.substring(0,2))
-      var endYear = parseInt(startDate.substring(6))
-      
-      var dateOne = new Date(startYear,startMonth-1, startDay)
-      var dateTwo = new Date(endYear,endMonth-1, endDay)
-      console.log(dateOne)
-      console.log(dateTwo)
-      
+  //start from 0--03/05/2024 --/ slash include to position
+  var startDay = parseInt(startDate.substring(3, 5));
+  var startMonth = parseInt(startDate.substring(0, 2));
+  var startYear = parseInt(startDate.substring(6));
 
-      
-      let Difference_In_Time =
-      dateTwo.getTime() - dateOne.getTime();
+  //start from 0--03/05/2024 --/ slash include to position
+  var endDay = parseInt(endDate.substring(3, 5));
+  var endMonth = parseInt(endDate.substring(0, 2));
+  var endYear = parseInt(startDate.substring(6));
 
-// Calculating the no. of days between
-// two dates
-let Difference_In_Days = Math.round (Difference_In_Time / (1000 * 3600 * 24));
-console.log(Difference_In_Days)
-// alert(Difference_In_Days * hotel[i].price)
+  var dateOne = new Date(startYear, startMonth - 1, startDay);
+  var dateTwo = new Date(endYear, endMonth - 1, endDay);
+  console.log(dateOne);
+  console.log(dateTwo);
 
+  let Difference_In_Time = dateTwo.getTime() - dateOne.getTime();
+
+  // Calculating the no. of days between
+  // two dates
+  let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+  console.log(Difference_In_Days);
+  // alert(Difference_In_Days * hotel[i].price)
+
+  //read how many room
+  let numRoom = parseInt(document.getElementById('roomTextBox').value);
 
   // go to all loop of hotel object
   for (i = 0; i < hotelRoom.length; i++) {
     if (hotelRoom[i].hotelName == hotelName) {
       var createDiv = document.createElement('div');
 
-
-
-      createDiv.setAttribute(
-        'class',
-        'mainBox'
-      );
-
-
+      createDiv.setAttribute('class', 'mainBox');
 
       //show standdard room
       //create image tag
-      var innerDiv = document.createElement('div')
-      innerDiv.setAttribute('class', 'wrapperBox')
+      var innerDiv = document.createElement('div');
+      innerDiv.setAttribute('class', 'wrapperBox');
       var imgTag = document.createElement('img'); //we create image tag
       imgTag.setAttribute('src', hotelRoom[i].standardRoom.roomImage); //from hotel object
-  
-      imgTag.setAttribute("class","targetImageViewPrice")
+
+      imgTag.setAttribute('class', 'targetImageViewPrice');
 
       createDiv.appendChild(imgTag); //add image tag to div tag
 
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Standard Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-   innerDiv.appendChild(createPtag); //put ptag in div
-
+      innerDiv.appendChild(createPtag); //put ptag in div
 
       var createPriceTag = document.createElement('p');
-      var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].standardRoom.price); //crate text  inside p tag
+      var priceNote = document.createTextNode(
+        'Price per night' + ' $' + hotelRoom[i].standardRoom.price
+      ); //crate text  inside p tag
       createPriceTag.appendChild(priceNote); //put textnote on ptag
       innerDiv.appendChild(createPriceTag); //put ptag in div
-createPriceTag.setAttribute("class","perNightSection")
-  
+      createPriceTag.setAttribute('class', 'perNightSection');
+
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode("Total" + " $"+hotelRoom[i].standardRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode(
+        'Total' +
+          ' $' +
+          hotelRoom[i].standardRoom.price * Difference_In_Days 
+      ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       innerDiv.appendChild(createPtag4); //put ptag in div
-      createPtag4.setAttribute("class","total")
-      createDiv.appendChild(innerDiv)
+      createPtag4.setAttribute('class', 'total');
+      createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
 
       //end standard type
 
-
-
       // family room type create
 
       var createDiv = document.createElement('div');
-      createDiv.setAttribute(
-        'class',
-        'mainBox'
-      );
+      createDiv.setAttribute('class', 'mainBox');
 
-      var innerDiv = document.createElement('div')
-      innerDiv.setAttribute('class', 'wrapperBox')
+      var innerDiv = document.createElement('div');
+      innerDiv.setAttribute('class', 'wrapperBox');
 
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
@@ -385,21 +410,27 @@ createPriceTag.setAttribute("class","perNightSection")
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Family Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-    innerDiv.appendChild(createPtag); //put ptag in div
+      innerDiv.appendChild(createPtag); //put ptag in div
 
-  //price per night
+      //price per night
       var createPriceTag = document.createElement('p');
-      var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].familyRoom.price); //crate text  inside p tag
+      var priceNote = document.createTextNode(
+        'Price per night' + ' $' + hotelRoom[i].familyRoom.price
+      ); //crate text  inside p tag
       createPriceTag.appendChild(priceNote); //put textnote on ptag
-  innerDiv.appendChild(createPriceTag); //put ptag in div
-      createPriceTag.setAttribute("class","perNightSection")
-//price for total
+      innerDiv.appendChild(createPriceTag); //put ptag in div
+      createPriceTag.setAttribute('class', 'perNightSection');
+      //price for total
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode("Total" + " $"+hotelRoom[i].familyRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode(
+        'Total' +
+          ' $' +
+          hotelRoom[i].familyRoom.price * Difference_In_Days 
+      ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
-   innerDiv.appendChild(createPtag4); //put ptag in div
-      createPtag4.setAttribute("class","total")
-createDiv.appendChild(innerDiv)
+      innerDiv.appendChild(createPtag4); //put ptag in div
+      createPtag4.setAttribute('class', 'total');
+      createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
 
       //end family type
@@ -407,13 +438,10 @@ createDiv.appendChild(innerDiv)
       // family room type create
 
       var createDiv = document.createElement('div');
-      createDiv.setAttribute(
-        'class',
-        'mainBox'
-      );
+      createDiv.setAttribute('class', 'mainBox');
       // wrapper image price per night - total price
-      var innerDiv = document.createElement('div')
-      innerDiv.setAttribute('class', 'wrapperBox')
+      var innerDiv = document.createElement('div');
+      innerDiv.setAttribute('class', 'wrapperBox');
 
       //create image tag
       var imgTag = document.createElement('img'); //we create image tag
@@ -424,22 +452,28 @@ createDiv.appendChild(innerDiv)
       var createPtag = document.createElement('p');
       var textNote = document.createTextNode('Sweet Room'); //crate text  inside p tag
       createPtag.appendChild(textNote); //put textnote on ptag
-  innerDiv.appendChild(createPtag); //put ptag in div
+      innerDiv.appendChild(createPtag); //put ptag in div
 
-  //price per night
-  var createPriceTag = document.createElement('p');
-  var priceNote = document.createTextNode("Price per night" + " $"+ hotelRoom[i].sweetRoom.price); //crate text  inside p tag
-  createPriceTag.appendChild(priceNote); //put textnote on ptag
-innerDiv.appendChild(createPriceTag); //put ptag in div
-  createPriceTag.setAttribute("class","perNightSection")
+      //price per night
+      var createPriceTag = document.createElement('p');
+      var priceNote = document.createTextNode(
+        'Price per night' + ' $' + hotelRoom[i].sweetRoom.price
+      ); //crate text  inside p tag
+      createPriceTag.appendChild(priceNote); //put textnote on ptag
+      innerDiv.appendChild(createPriceTag); //put ptag in div
+      createPriceTag.setAttribute('class', 'perNightSection');
 
-  //total price
+      //total price
       var createPtag4 = document.createElement('p');
-      var textNote4 = document.createTextNode("Total" + " $"+ hotelRoom[i].sweetRoom.price * Difference_In_Days); //crate text  inside p tag
+      var textNote4 = document.createTextNode(
+        'Total' +
+          ' $' +
+          hotelRoom[i].sweetRoom.price * Difference_In_Days 
+      ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
-  innerDiv.appendChild(createPtag4); //put ptag in div
-      createPtag4.setAttribute("class","total")
-      createDiv.appendChild(innerDiv)
+      innerDiv.appendChild(createPtag4); //put ptag in div
+      createPtag4.setAttribute('class', 'total');
+      createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
 
       //end
