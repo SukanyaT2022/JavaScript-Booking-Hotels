@@ -55,11 +55,24 @@ height: 400px;
 }
 
 /* summary room price section */
-.roomPriceDivWrapper{
+
+/* below control p tag-- roomPrice */
+/* mainbox summary */
+#summaryWrapper{
+border: solid 2px green;
+}
+/* individual box summary */
+.roomTypeDivWrapper{
+    border: solid 2px red;  
+}
+.roomPrice{
 
 }
-/* below control p tag-- roomPrice */
-.roomPrice{
+
+.total{
+
+}
+.totalWrapper{
 
 }
 
