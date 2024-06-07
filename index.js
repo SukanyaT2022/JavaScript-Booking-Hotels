@@ -1,4 +1,5 @@
 var total = 0
+var finalTotal = 0
 
 // consrtucture object diffrent hotel
 function Hotel(hotelName2, location2, image, image3, image4, image5) {
@@ -317,13 +318,24 @@ var ptag = document.createElement('p');
 var textNumRoom = document.createTextNode('Total: ' + numRoom * roomPrice * numNight)
 
 div.appendChild(ptag)
+finalTotal = finalTotal + numRoom * roomPrice * numNight
 ptag.appendChild(textNumRoom)
-
 ptag.setAttribute('class', 'total')
-// document.getElementById('summaryWrapper').removeChild(document.getElementById('summaryWrapper').firstChild())
 
+var ptag = document.createElement('p');
+var textNumRoom = document.createTextNode('Final total: ' + finalTotal)
+// document.getElementById('summaryWrapper').removeChild(document.getElementById('summaryWrapper').firstChild())
+ptag.appendChild(textNumRoom)
+ptag.setAttribute('class', 'total')
+
+while(document.getElementById('showFinalTotal').firstChild){
+document.getElementById('showFinalTotal').firstChild.remove()
+}
+
+document.getElementById('showFinalTotal').appendChild(ptag)
 document.getElementById('summaryWrapper').appendChild(div)
 }
+
 
 // end summary function
 
