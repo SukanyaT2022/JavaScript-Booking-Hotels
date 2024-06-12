@@ -1,5 +1,5 @@
-var total = 0
-var finalTotal = 0
+var total = 0;
+var finalTotal = 0;
 
 // consrtucture object diffrent hotel
 function Hotel(hotelName2, location2, image, image3, image4, image5) {
@@ -174,10 +174,9 @@ var hotelDubaiRoom = new numHotelRoomFunc(
 
 var hotelRoom = [hotelThailandRoom, hotelDubaiRoom, hotelHawaiiRoom];
 
-
 //displayHotel() do check which hotel select--price --how many days bet 2 day start and end
 function displayHotel() {
-  total = 0
+  total = 0;
   // update delete previouse search start Headers
   let div = document.getElementById('displayHotelImage');
   //id contactList control the whole section of new contact
@@ -266,76 +265,90 @@ function displayHotel() {
   }
 }
 
-function summary(roomType, roomPrice, numRoom, numNight){
+function summary(roomType, roomPrice, numRoom, numNight) {
   // room type summary
-var div = document.createElement('div');
-var ptag = document.createElement('p');
-var textRoomType = document.createTextNode('Room Type' + roomType)
+  var div = document.createElement('div');
+  var ptag = document.createElement('p');
+  var textRoomType = document.createTextNode('Room Type' + roomType);
 
-div.appendChild(ptag)
-ptag.appendChild(textRoomType)
+  div.appendChild(ptag);
+  ptag.appendChild(textRoomType);
 
-ptag.setAttribute('class', 'roomType')
-div.setAttribute('class', 'roomTypeDivWrapper')
+  ptag.setAttribute('class', 'roomType');
+  div.setAttribute('class', 'roomTypeDivWrapper');
+  div.setAttribute('id',roomType)
 
-// room price summary
-// var div = document.createElement('div');
-var ptag = document.createElement('p');
-var textRoomPrice = document.createTextNode('Room Price ' + roomPrice)
+  // room price summary
+  // var div = document.createElement('div');
+  var ptag = document.createElement('p');
+  var textRoomPrice = document.createTextNode('Room Price ' + roomPrice);
 
-div.appendChild(ptag)
-ptag.appendChild(textRoomPrice )
+  div.appendChild(ptag);
+  ptag.appendChild(textRoomPrice);
 
-ptag.setAttribute('class', 'roomPrice')
+  ptag.setAttribute('class', 'roomPrice');
 
+  // num room summary
+  // var div = document.createElement('div');
+  var ptag = document.createElement('p');
+  var textNumRoom = document.createTextNode('Number of Room ' + numRoom);
 
-// num room summary
-// var div = document.createElement('div');
-var ptag = document.createElement('p');
-var textNumRoom = document.createTextNode('Number of Room ' + numRoom)
+  div.appendChild(ptag);
+  ptag.appendChild(textNumRoom);
 
-div.appendChild(ptag)
-ptag.appendChild(textNumRoom)
+  ptag.setAttribute('class', 'numRoom');
 
-ptag.setAttribute('class', 'numRoom')
+  // num night -- how many night
+  // var div = document.createElement('div');
+  var ptag = document.createElement('p');
+  var textNumRoom = document.createTextNode(
+    'Total length of stay ( night ) :' + numNight
+  );
 
+  div.appendChild(ptag);
+  ptag.appendChild(textNumRoom);
+  ptag.setAttribute('class', 'numRoom');
 
-// num night -- how many night
-// var div = document.createElement('div');
-var ptag = document.createElement('p');
-var textNumRoom = document.createTextNode('Total length of stay ( night ) :' + numNight)
+  //total
+  var ptag = document.createElement('p');
+  var textNumRoom = document.createTextNode(
+    'Total: ' + numRoom * roomPrice * numNight
+  );
 
-div.appendChild(ptag)
-ptag.appendChild(textNumRoom)
+  div.appendChild(ptag);
+  finalTotal = finalTotal + numRoom * roomPrice * numNight;
+  ptag.appendChild(textNumRoom);
+  ptag.setAttribute('class', 'total');
 
-ptag.setAttribute('class', 'numRoom')
+  var ptag = document.createElement('p');
+  var textNumRoom = document.createTextNode('Final total: ' + finalTotal);
+  // document.getElementById('summaryWrapper').removeChild(document.getElementById('summaryWrapper').firstChild())
+  ptag.appendChild(textNumRoom);
+  ptag.setAttribute('class', 'total');
 
+  while (document.getElementById('showFinalTotal').firstChild) {
+    document.getElementById('showFinalTotal').firstChild.remove();
+  }
 
+  document.getElementById('showFinalTotal').appendChild(ptag);
+  //remove button
+  var button = document.createElement('input');
+  button.setAttribute('type', 'button');
+  button.setAttribute('value', 'X');
+  button.setAttribute(
+    'onclick',
+    "remove('Sweet Room', " +
+      roomPrice +
+      ' ,' +
+      numRoom +
+      ' , ' +
+      numNight +
+      '  )'
+  );
+  div.appendChild(button);
 
-
-//total
-var ptag = document.createElement('p');
-var textNumRoom = document.createTextNode('Total: ' + numRoom * roomPrice * numNight)
-
-div.appendChild(ptag)
-finalTotal = finalTotal + numRoom * roomPrice * numNight
-ptag.appendChild(textNumRoom)
-ptag.setAttribute('class', 'total')
-
-var ptag = document.createElement('p');
-var textNumRoom = document.createTextNode('Final total: ' + finalTotal)
-// document.getElementById('summaryWrapper').removeChild(document.getElementById('summaryWrapper').firstChild())
-ptag.appendChild(textNumRoom)
-ptag.setAttribute('class', 'total')
-
-while(document.getElementById('showFinalTotal').firstChild){
-document.getElementById('showFinalTotal').firstChild.remove()
+  document.getElementById('summaryWrapper').appendChild(div);
 }
-
-document.getElementById('showFinalTotal').appendChild(ptag)
-document.getElementById('summaryWrapper').appendChild(div)
-}
-
 
 // end summary function
 
@@ -419,19 +432,26 @@ function showImgRoomType(hotelName) {
 
       var createPtag4 = document.createElement('p');
       var textNote4 = document.createTextNode(
-        'Total' +
-          ' $' +
-          hotelRoom[i].standardRoom.price * Difference_In_Days 
+        'Total' + ' $' + hotelRoom[i].standardRoom.price * Difference_In_Days
       ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       innerDiv.appendChild(createPtag4); //put ptag in div
       createPtag4.setAttribute('class', 'total');
 
-      var button = document.createElement('input')
-      button.setAttribute('type', 'button')
-      button.setAttribute('value','book')
-      button.setAttribute('onclick', "summary('Standard Room', " + hotelRoom[i].standardRoom.price + " ,"+ numRoom + ", " + Difference_In_Days + " )")
-      innerDiv.appendChild(button)
+      var button = document.createElement('input');
+      button.setAttribute('type', 'button');
+      button.setAttribute('value', 'book');
+      button.setAttribute(
+        'onclick',
+        "summary('Standard Room', " +
+          hotelRoom[i].standardRoom.price +
+          ' ,' +
+          numRoom +
+          ', ' +
+          Difference_In_Days +
+          ' )'
+      );
+      innerDiv.appendChild(button);
 
       createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
@@ -468,20 +488,26 @@ function showImgRoomType(hotelName) {
       //price for total
       var createPtag4 = document.createElement('p');
       var textNote4 = document.createTextNode(
-        'Total' +
-          ' $' +
-          hotelRoom[i].familyRoom.price * Difference_In_Days 
+        'Total' + ' $' + hotelRoom[i].familyRoom.price * Difference_In_Days
       ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       innerDiv.appendChild(createPtag4); //put ptag in div
       createPtag4.setAttribute('class', 'total');
 
-      var button = document.createElement('input')
-      button.setAttribute('type', 'button')
-      button.setAttribute('value','book')
-      button.setAttribute('onclick', "summary('Family  Room', " + hotelRoom[i].familyRoom.price + " ,"+ numRoom + ", " + Difference_In_Days + "  )")
-      innerDiv.appendChild(button)
-
+      var button = document.createElement('input');
+      button.setAttribute('type', 'button');
+      button.setAttribute('value', 'book');
+      button.setAttribute(
+        'onclick',
+        "summary('Family  Room', " +
+          hotelRoom[i].familyRoom.price +
+          ' ,' +
+          numRoom +
+          ', ' +
+          Difference_In_Days +
+          '  )'
+      );
+      innerDiv.appendChild(button);
 
       createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
@@ -519,20 +545,26 @@ function showImgRoomType(hotelName) {
       //total price
       var createPtag4 = document.createElement('p');
       var textNote4 = document.createTextNode(
-        'Total' +
-          ' $' +
-          hotelRoom[i].sweetRoom.price * Difference_In_Days 
+        'Total' + ' $' + hotelRoom[i].sweetRoom.price * Difference_In_Days
       ); //crate text  inside p tag
       createPtag4.appendChild(textNote4); //put textnote on ptag
       innerDiv.appendChild(createPtag4); //put ptag in div
       createPtag4.setAttribute('class', 'total');
 
-      var button = document.createElement('input')
-      button.setAttribute('type', 'button')
-      button.setAttribute('value','book')
-      button.setAttribute('onclick', "summary('Sweet Room', " + hotelRoom[i].sweetRoom.price + " ,"+ numRoom + " , " + Difference_In_Days + "  )")
-      innerDiv.appendChild(button)
-
+      var button = document.createElement('input');
+      button.setAttribute('type', 'button');
+      button.setAttribute('value', 'book');
+      button.setAttribute(
+        'onclick',
+        "summary('Sweet Room', " +
+          hotelRoom[i].sweetRoom.price +
+          ' ,' +
+          numRoom +
+          ' , ' +
+          Difference_In_Days +
+          '  )'
+      );
+      innerDiv.appendChild(button);
 
       createDiv.appendChild(innerDiv);
       div.appendChild(createDiv);
@@ -541,6 +573,37 @@ function showImgRoomType(hotelName) {
     }
   }
 }
+
+
+
+
+function remove(roomType, roomPrice, numRoom, numNight) {
+  var div = document.getElementById('summaryWrapper');
+  for (const child of div.children) {
+    if (child.tagName == 'div') {
+      if (child.id == roomType) {
+        div.removeChild(child);
+        break;
+      }
+      //!= -1 means I have found it
+    }
+  }
+  finalTotal = finalTotal - numRoom * roomPrice * numNight;
+
+  var ptag = document.createElement('p');
+  var textNumRoom = document.createTextNode('Final total: ' + finalTotal);
+  // document.getElementById('summaryWrapper').removeChild(document.getElementById('summaryWrapper').firstChild())
+  ptag.appendChild(textNumRoom);
+  ptag.setAttribute('class', 'total');
+
+  while (document.getElementById('showFinalTotal').firstChild) {
+    document.getElementById('showFinalTotal').firstChild.remove();
+  }
+
+  document.getElementById('showFinalTotal').appendChild(ptag);
+}
+
+// end summary function
 
 const sweetRoomObj = new SweetRoom(400, 4, 'roomImage', 1, 'description');
 const familyRoomObj = new FamilyRoom(300, 10, 'roomImage', 3, 'description');
