@@ -337,7 +337,7 @@ function summary(roomType, roomPrice, numRoom, numNight) {
   button.setAttribute('value', 'X');
   button.setAttribute(
     'onclick',
-    "remove('Sweet Room', " +
+    "remove(" + roomType+ "," +   
       roomPrice +
       ' ,' +
       numRoom +
@@ -573,8 +573,6 @@ function showImgRoomType(hotelName) {
     }
   }
 }
-
-
 
 
 function remove(roomType, roomPrice, numRoom, numNight) {
